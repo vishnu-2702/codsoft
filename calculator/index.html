@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            /* Remove background blur */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        .calculator {
+            max-width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            /* Center the calculator */
+            text-align: center;
+        }
+        
+        .calculator h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .calculator .row {
+            margin-bottom: 10px;
+        }
+        
+        .calculator input {
+            text-align: right;
+            font-size: 24px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+        }
+        
+        /* Change color of keys */
+        .calculator .btn-primary {
+            background-color: #f0f0f0;
+            color: #000;
+            width: 100%;
+        }
+        
+        .calculator .btn-secondary {
+            background-color: #d3d3d3;
+            color: #000;
+            width: 100%;
+        }
+    </style>
+    <title>Minimalist Calculator</title>
+</head>
+<body>
+    <div class="calculator">
+        <h1><i class="bx bxs-calculator"></i> Calculator</h1>
+        <div class="row">
+            <input type="text" class="form-control" />
+        </div>
+        <div class="row">
+            <div class="col"><button class="btn btn-secondary" id="clear">C</button></div>
+            <div class="col"><button class="btn btn-secondary" id="percentage">%</button></div>
+            <div class="col"><button class="btn btn-secondary" id="negate">+/-</button></div>
+            <div class="col"><button class="btn btn-secondary" id="parentheses">()</button></div>
+        </div>
+        <div class="row">
+            <div class="col"><button class="btn btn-primary" id="seven">7</button></div>
+            <div class="col"><button class="btn btn-primary" id="eight">8</button></div>
+            <div class="col"><button class="btn btn-primary" id="nine">9</button></div>
+            <div class="col"><button class="btn btn-secondary" id="multiply">*</button></div>
+        </div>
+        <div class="row">
+            <div class="col"><button class="btn btn-primary" id="four">4</button></div>
+            <div class="col"><button class="btn btn-primary" id="five">5</button></div>
+            <div class="col"><button class="btn btn-primary" id="six">6</button></div>
+            <div class="col"><button class="btn btn-secondary" id="divide">/</button></div>
+        </div>
+        <div class="row">
+            <div class="col"><button class="btn btn-primary" id="one">1</button></div>
+            <div class="col"><button class="btn btn-primary" id="two">2</button></div>
+            <div class="col"><button class="btn btn-primary" id="three">3</button></div>
+            <div class="col"><button class="btn btn-secondary" id="add">+</button></div>
+        </div>
+        <div class="row">
+            <div class="col"><button class="btn btn-primary" id="zero">0</button></div>
+            <div class="col"><button class="btn btn-primary" id="decimal">.</button></div>
+            <div class="col"><button class="btn btn-primary" id="equals">=</button></div>
+            <div class="col"><button class="btn btn-secondary" id="subtract">-</button></div>
+        </div>
+    </div>
+    <script>
+        let string = "";
+        let input = document.querySelector('input');
+        let buttons = document.querySelectorAll('.btn');
+
+        buttons.forEach((button) => {
+            button.addEventListener('click', (e) => {
+                let value = e.target.innerHTML;
+
+                if (value === '=') {
+                    try {
+                        string = eval(string);
+                        input.value = string;
+                    } catch (error) {
+                        input.value = 'Error';
+                    }
+                } else if (value === 'C') {
+                    string = "";
+                    input.value = string;
+                } else {
+                    string += value;
+                    input.value = string;
+                }
+            });
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
